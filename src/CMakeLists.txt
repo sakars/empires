@@ -2,10 +2,11 @@
 
 add_subdirectory(hex)
 
-add_library(empires_lib game_logic.c)
+add_library(empires_lib hexdrawer.c)
 
 target_link_libraries(empires_lib PUBLIC hexgrid)
 
+add_executable(empires main.c)
+target_link_libraries(empires empires_lib ${GLUT_LIBRARIES} ${OPENGL_LIBRARIES} ${LIBEVENT_LIBRARIES})
+target_include_directories(empires PRIVATE ${GLUT_INCLUDE_DIRS} ${OPENGL_INCLUDE_DIRS} ${LIBEVENT_INCLUDE_DIRS})
 
-# target_link_libraries(empires ${LIBEVENT_LIBRARIES} hex)
-# target_include_directories(empires PRIVATE ${LIBEVENT_INCLUDE_DIRS})
